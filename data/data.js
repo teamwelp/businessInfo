@@ -1,45 +1,70 @@
 const _ = require('lodash');
+const loremIpsum = require('lorem-ipsum');
+const names = require('./names.js');
+const namesData = {businesses: names.businesses, users: names.users};
 
-const generateFakeData = () => {
-  // Generate a consistent set of 200 fake restaurant names
-  const names = ['Oleg\'s', 'Nick\'s', 'John\'s', 'Melvin\'s', 'Andrea\'s', 'Toby\'s'];
-  const food = ['Burger', 'Pizza', 'Hot Dog', 'Sandwich', 'Sushi', 'Curry'];
-  const suffix = ['Palace', 'Fusion', 'Saloon', 'Reactor', 'Emporium', 'Shack', 'Buffet'];
+const extractProperty = (data, property) => {
+  let arr = [];
+  for (let i = 0; i < data.businesses.length; i++) {
+    arr.push(data.businesses[i][property]);
+  }
+  return arr;
+};
+const generateLinks = (name) => {
+  let links = [];
+  for (let i = 0; i < name.length; i++) {
+    let link = name[i].replace(/\s|\'/g, '').toLowerCase();
+    link = 'http://' + link + '.com';
+    links.push(link);
+  }
+  return links;
+};
+const randomBoolean = () => {
+  if (Math.random() * 2 < 1) {
+    return false;
+  }
+  return true;
+};
+const randomIntegers = (start, end, length = 200) => {
+  let arr = [];
+  for (let i = 0; i < length; i++) {
+    arr.push(_.random(start, end));
+  }
+  return arr;
+};
+const randomItemFromArray = (items) => {
+  let randArray = randomIntegers(0, items.length);
+  for (var i = 0; i < randArray.length; i++) {
+    randArray[i] = items[randArray[i]];
+  }
+  return randArray;
+};
+const generateRandomLoremIpsum = (sentenceCount, totalNumber = 200) => {
+  let randomText = [];
+  for (var i = 0; i < 200; i++) {
+    randomText.push(loremIpsum({ count: sentenceCount, units: 'sentences' }));
+  }
+  return randomText;
+};
+const randomArrayData = (source, arrayLength, totalNumber = 200) => {
+  let result = [];
+  for (let i = 0; i < totalNumber; i++) {
+    let array = [];
+    for (let j = 0; j < arrayLength; j++) {
+      array.push(randomItemFromArray(source));
+    }
+    result.push(array);
+  }
+  return result;
+};
 
-  let mockupData = {businesses: [], users: []};
-  let count = 200;
-  for (let i = 0; i < names.length; i++) {
-    for (let j = 0; j < food.length; j++) {
-      for (let k = 0; k < suffix.length; k++) {
-        let businessName = names[i] + ' ' + food[j] + ' ' + suffix[k];
-        mockupData.businesses.push({id: count, name: businessName});
-        count++;
-      }
-    }
-  }
-  mockupData.businesses = mockupData.businesses.slice(0, 200);
-  // Generate a consistent set of 200 user names
-  const title = ['Count', 'Duke', 'King', 'Empress', 'Princess', 'Esquire'];
-  const firstName = ['Melvin', 'Fred', 'Ivy', 'Sue'];
-  const suffixUser = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  let userCount = 0;
-  for (let i = 0; i < title.length; i++) {
-    for (let j = 0; j < firstName.length; j++) {
-      for (let k = 0; k < suffixUser.length; k++) {
-        let userName = title[i] + firstName[j] + suffixUser[k];
-        mockupData.users.push({ id: userCount, name: userName});
-        userCount++;
-      }
-    }
-  }
-  mockupData.users = mockupData.users.slice(0, 200);
+const generateFakeData = (mockupData = {}) => {
+  // extract names and ids from businesses
+  mockupData.id = extractProperty(namesData, 'id');
+  mockupData.name = extractProperty(namesData, 'name');
+  // calculated data - based on another field
+  mockupData.businessLink = generateLinks(mockupData.name);
   // Generate random Boolean values for each 
-  const randomBoolean = () => {
-    if (Math.random() * 2 < 1) {
-      return false;
-    }
-    return true;
-  };
   const booleanFields = ['claimedByOwner', 'acceptsCreditCards', 'bikeParking', 'goodForKids', 'byApptOnly', 'isYelpAdvertiser'];
   for (let i = 0; i < booleanFields.length; i++) {
     mockupData[booleanFields[i]] = [];
@@ -48,22 +73,27 @@ const generateFakeData = () => {
     }
   }
   // integer generation
-  const makeRandomArray = (start, end, length = 200) => {
-    let arr = [];
-    for (let i = 0; i < length; i++) {
-      arr.push(_.random(start, end));
-    }
-    return arr;
-  }
-  mockupData.addressZip = makeRandomArray(94102, 94105);
-  mockupData.priceRangeScale = makeRandomArray(1, 4);
-  mockupData.priceRangeLow = makeRandomArray(11, 30);
-  mockupData.priceRangeRange = makeRandomArray(5, 20);
-  mockupData.healthInpection = makeRandomArray(70, 100);
-  mockupData.addressNumber = makeRandomArray(75, 1547);
-
-  // const streets = ['Howard Street', 'Mission Street', 'Market Street'];
-
+  mockupData.addressZip = randomIntegers(94102, 94105);
+  mockupData.priceRangeScale = randomIntegers(1, 4);
+  mockupData.priceRangeLow = randomIntegers(11, 30);
+  mockupData.priceRangeRange = randomIntegers(5, 20);
+  mockupData.healthInpection = randomIntegers(70, 100);
+  mockupData.addressNumber = randomIntegers(75, 1547);
+  mockupData.phoneOfficeCode = randomIntegers(303, 979);
+  mockupData.phoneLineCode = randomIntegers(1001, 9009);
+  // fixed data - same for all 200
+  mockupData.phoneAreaCode = new Array(200).fill(415);
+  mockupData.addressCity = new Array(200).fill('San Francisco');
+  mockupData.addressState = new Array(200).fill('CA');
+  // random string values
+  const streets = ['Howard Street', 'Mission Street', 'Market Street'];
+  mockupData.addressStreet = randomItemFromArray(streets);
+  mockupData.longDescription = generateRandomLoremIpsum(10);
+  //generate random arrays
+  const metatags = ['Seafood', 'Bars', 'Ramen', 'Fusion', 'Breakfast', 'Brunch', 'Lunch', 'Dinner', 'Soul Food', 'Burgers', 'Waffles', 'Desserts', 'Bakeries', 'Coffee'];
+  mockupData.metatags = randomArrayData(metatags, 4);
+  const carTags = ['Street', 'Garage, Validated', 'Garage, Paid', 'Parking Lot', 'Valet'];
+  mockupData.carParking = randomArrayData(carTags, 2);
   return mockupData;
 };
 

@@ -1,9 +1,12 @@
 const data = require('./data.js');
 
 const fakeData = data();
+// booleanFields 
 const booleanFields = ['claimedByOwner', 'acceptsCreditCards', 'bikeParking', 'goodForKids', 'byApptOnly', 'isYelpAdvertiser'];
-const integerFields = ['addressZip', 'priceRangeScale', 'priceRangeLow', 'priceRangeRange', 'healthInpection', 'addressNumber'];
-const stringFields = ['']
+const integerFields = ['id', 'addressZip', 'priceRangeScale', 'priceRangeLow', 'priceRangeRange', 'healthInpection', 'addressNumber', 'phoneOfficeCode', 'phoneLineCode'];
+const randomStringFields = ['name', 'addressStreet', 'longDescription'];
+const fixedFields = ['addressCity', 'addressState', 'phoneAreaCode'];
+const arrayOfStrings = ['metatags', 'carParking'];
 
 const hasRequisiteFields = (fields) => {
   for (var i = 0; i < fields.length; i++) {
@@ -15,7 +18,7 @@ describe('fake data generation', () => {
   test('should generate an object', () => {
     expect(typeof fakeData).toBe('object');
   });
-})
+});
 
 describe('boolean value generation', () => {
   test('should have the requisite boolean fields', () => {
@@ -43,6 +46,14 @@ describe('random integer generation', () => {
   test('should have integer fields that contain integer values', () => {
     integerFields.forEach( (field) => {
       expect(typeof fakeData[field][0]).toBe('number');
+    });
+    console.log(Object.keys(fakeData));
+    console.log(Object.keys(fakeData).length);
+  });
+
+  test('should have random integer values (this test may sometimes fail)', () => {
+    integerFields.forEach( (field) => {
+      expect(fakeData[field][0] === fakeData[field][199]).toBe(false);
     });
   });
 });
