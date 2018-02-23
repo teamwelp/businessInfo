@@ -17,9 +17,15 @@
 
 ## Usage
 
-To test out my code: clone this repo, then checkout to the feature you want to test, or stay in master branch to test what I've committed to master. Then in the terminal:
+To test out my code: clone this repo, then checkout to the feature you want to test, run npm install and npm test. In the terminal:
+
+```sh
+git clone https://github.com/teamwelp/businessInfo.git
+cd businessInfo
+git checkout -b feature/data-generation
 npm install
 npm test
+```
 
 ## Requirements
 
