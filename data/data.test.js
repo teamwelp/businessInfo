@@ -104,22 +104,25 @@ describe('fixed fields generation', () => {
     hasRequisiteFields(arrayOfStringFields);
   });
   test('should all be equal', () => {
-    expect(fakeData[field][0]).toEqual(fakeData[field][199]);
+    fixedFields.forEach( (field) => {
+      console.log(field);
+      expect(fakeData[field][0]).toEqual(fakeData[field][199]);
+    });
   });
 });
 
 describe('hours object generation', () => {
   test('should have hours property', () => {
-    expect(fakeData.toHaveProperty('hours').toBe(true));
+    expect(fakeData).toHaveProperty('hours');
   });
   test('should have objects with Mon and Tue properties', () => {
     expect(typeof fakeData.hours).toBe('object');
-    expect(fakeData.hours.toHaveProperty('Mon'));
-    expect(fakeData.hours.toHaveProperty('Tue'));
+    expect(fakeData.hours[0]).toHaveProperty('Mon');
+    expect(fakeData.hours[0]).toHaveProperty('Tue');
   });
   test('Mon property should be object with open and close properties', () => {
-    expect(typeof fakeData.hours.Mon).toBe('object');
-    expect(fakeData.hours.Mon.open).toBeDefined();
-    expect(fakeData.hours.Mon.close).toBeDefined();
+    expect(typeof fakeData.hours[0].Mon).toBe('object');
+    expect(fakeData.hours[0].Mon.open).toBeDefined();
+    expect(fakeData.hours[0].Mon.close).toBeDefined();
   });
 });
