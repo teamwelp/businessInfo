@@ -58,6 +58,34 @@ const randomArrayData = (source, arrayLength, totalNumber = 200) => {
   return result;
 };
 
+const makeHours = () => {
+  const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+  let hours = {};
+  let hourStartArray = randomIntegers(8, 11, 1);
+  let hourCloseArray = randomIntegers(14, 22, 1);
+  let weekendStartArray = randomIntegers(10, 11, 1);
+  let weekendCloseArray = randomIntegers(17, 23, 1);
+  for (let i = 0; i < days.length; i++) {
+    hours[days[i]] = {};
+    if (i < 5) {
+      hours[days[i]].open = hourStartArray[0];
+      hours[days[i]].close = hourCloseArray[0];
+    } else {
+      hours[days[i]].open = weekendStartArray[0];
+      hours[days[i]].close = weekendCloseArray[0];
+    }
+  }
+  return hours;
+};
+
+const makeHoursArray = (length = 200) => {
+  let hoursArray = [];
+  for (let i = 0; i < length; i++) {
+    hoursArray.push(makeHours());
+  }
+  return hoursArray;
+};
+
 const generateFakeData = (mockupData = {}) => {
   // extract names and ids from businesses
   mockupData.id = extractProperty(namesData, 'id');
@@ -94,6 +122,8 @@ const generateFakeData = (mockupData = {}) => {
   mockupData.metatags = randomArrayData(metatags, 4);
   const carTags = ['Street', 'Garage, Validated', 'Garage, Paid', 'Parking Lot', 'Valet'];
   mockupData.carParking = randomArrayData(carTags, 2);
+  // generate restaurant hours
+  mockupData.hours = makeHoursArray();
   return mockupData;
 };
 

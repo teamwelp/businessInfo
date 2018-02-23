@@ -3,10 +3,12 @@ const data = require('./data.js');
 const fakeData = data();
 // booleanFields 
 const booleanFields = ['claimedByOwner', 'acceptsCreditCards', 'bikeParking', 'goodForKids', 'byApptOnly', 'isYelpAdvertiser'];
-const integerFields = ['id', 'addressZip', 'priceRangeScale', 'priceRangeLow', 'priceRangeRange', 'healthInpection', 'addressNumber', 'phoneOfficeCode', 'phoneLineCode'];
-const randomStringFields = ['name', 'addressStreet', 'longDescription'];
+const integerFields = ['addressNumber', 'addressZip', 'healthInpection', 'id', 'phoneLineCode', 'phoneOfficeCode', 'priceRangeLow', 'priceRangeRange', 'priceRangeScale'];
+const stringFields = ['name', 'addressStreet', 'longDescription'];
+const arrayOfStringFields = ['carParking', 'metatags'];
 const fixedFields = ['addressCity', 'addressState', 'phoneAreaCode'];
-const arrayOfStrings = ['metatags', 'carParking'];
+const objectField = 'hours';
+const calculatedStringField = 'businessLink';
 
 const hasRequisiteFields = (fields) => {
   for (var i = 0; i < fields.length; i++) {
@@ -14,9 +16,23 @@ const hasRequisiteFields = (fields) => {
   }
 };
 
+const isRandom = (fields) => {
+  fields.forEach((field) => {
+    expect(fakeData[field][0] === fakeData[field][199]).toBe(false);
+  });
+};
+
 describe('fake data generation', () => {
   test('should generate an object', () => {
     expect(typeof fakeData).toBe('object');
+  });
+  test('should have 25 properties', () => {
+    expect(Object.keys(fakeData).length).toBe(25);
+  });
+  test('should have properties containing arrays with length 200', () => {
+    for (var key in fakeData) {
+      expect(fakeData[key].length).toBe(200);
+    }
   });
 });
 
@@ -31,7 +47,7 @@ describe('boolean value generation', () => {
     }
   });
 
-  test('should have boolean fields that contain boolean values', () => {
+  test('should have boolean values', () => {
     for (var i = 0; i < booleanFields.length; i++) {
       expect(typeof fakeData[booleanFields[i]][0]).toBe('boolean');
     }
@@ -43,17 +59,43 @@ describe('random integer generation', () => {
     hasRequisiteFields(integerFields);
   });
 
-  test('should have integer fields that contain integer values', () => {
+  test('should have integer values', () => {
     integerFields.forEach( (field) => {
       expect(typeof fakeData[field][0]).toBe('number');
     });
-    console.log(Object.keys(fakeData));
-    console.log(Object.keys(fakeData).length);
   });
 
-  test('should have random integer values (this test may sometimes fail)', () => {
+  test('should be randomly generated (will sometimes fail)', () => {
     integerFields.forEach( (field) => {
       expect(fakeData[field][0] === fakeData[field][199]).toBe(false);
     });
+  });
+});
+
+describe('random string generation', () => {
+  test('should have the requisite fields', () => {
+    hasRequisiteFields(stringFields);
+  });
+  test('should have string values', () => {
+    stringFields.forEach( (field) => {
+      expect(typeof fakeData[field][0]).toBe('string');
+    });
+  });
+  test('should be randomly generated (will sometimes fail)', () => {
+    isRandom(stringFields);
+  });
+});
+
+describe('random array generation', () => {
+  test('should have the requisite fields', () => {
+    hasRequisiteFields(arrayOfStringFields);
+  });
+  test('should have array values', () => {
+    arrayOfStringFields.forEach((field) => {
+      expect(Array.isArray(fakeData[field][0])).toBe(true);
+    });
+  });
+  test('should be randomly generated', () => {
+    isRandom(arrayOfStringFields);
   });
 });
