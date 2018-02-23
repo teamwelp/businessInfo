@@ -14,21 +14,5 @@ for (let i = 0; i < names.length; i++) {
   }
 }
 mockupData.businesses = mockupData.businesses.slice(0, 200);
-// Generate a consistent set of 200 user names
-const title = ['Count', 'Duke', 'King', 'Empress', 'Princess', 'Esquire'];
-const firstName = ['Melvin', 'Fred', 'Ivy', 'Sue'];
-const suffixUser = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-let userCount = 0;
-for (let i = 0; i < title.length; i++) {
-  for (let j = 0; j < firstName.length; j++) {
-    for (let k = 0; k < suffixUser.length; k++) {
-      let userName = title[i] + firstName[j] + suffixUser[k];
-      mockupData.users.push({ id: userCount, name: userName });
-      userCount++;
-    }
-  }
-}
-mockupData.users = mockupData.users.slice(0, 200);
 
 module.exports.businesses = mockupData.businesses;
-module.exports.users = mockupData.users;

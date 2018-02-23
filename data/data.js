@@ -46,7 +46,7 @@ const generateRandomLoremIpsum = (sentenceCount, totalNumber = 200) => {
   }
   return randomText;
 };
-const randomArrayData = (source, arrayLength, totalNumber = 200) => {
+const generateRandomArrayOfItems = (source, arrayLength, totalNumber = 200) => {
   let result = [];
   for (let i = 0; i < totalNumber; i++) {
     let array = [];
@@ -119,9 +119,9 @@ const generateFakeData = (mockupData = {}) => {
   mockupData.longDescription = generateRandomLoremIpsum(10);
   //generate random arrays
   const metatags = ['Seafood', 'Bars', 'Ramen', 'Fusion', 'Breakfast', 'Brunch', 'Lunch', 'Dinner', 'Soul Food', 'Burgers', 'Waffles', 'Desserts', 'Bakeries', 'Coffee'];
-  mockupData.metatags = randomArrayData(metatags, 4);
+  mockupData.metatags = generateRandomArrayOfItems(metatags, 4);
   const carTags = ['Street', 'Garage, Validated', 'Garage, Paid', 'Parking Lot', 'Valet'];
-  mockupData.carParking = randomArrayData(carTags, 2);
+  mockupData.carParking = generateRandomArrayOfItems(carTags, 2);
   // generate restaurant hours
   mockupData.hours = makeHoursArray();
   return mockupData;
