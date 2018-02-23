@@ -1,7 +1,6 @@
 const data = require('./data.js');
 
 const fakeData = data();
-// booleanFields 
 const booleanFields = ['claimedByOwner', 'acceptsCreditCards', 'bikeParking', 'goodForKids', 'byApptOnly', 'isYelpAdvertiser'];
 const integerFields = ['addressNumber', 'addressZip', 'healthInpection', 'id', 'phoneLineCode', 'phoneOfficeCode', 'priceRangeLow', 'priceRangeRange', 'priceRangeScale'];
 const stringFields = ['name', 'addressStreet', 'longDescription'];
@@ -97,5 +96,20 @@ describe('random array generation', () => {
   });
   test('should be randomly generated', () => {
     isRandom(arrayOfStringFields);
+  });
+});
+
+describe('fixed fields generation', () => {
+  test('should have the requisite fields', () => {
+    hasRequisiteFields(arrayOfStringFields);
+  });
+  test('should all be equal', () => {
+    expect(fakeData[field][0]).toEqual(fakeData[field][199]);
+  });
+});
+
+describe('hours object generation', () => {
+  test('should have hours property', () => {
+
   });
 });
