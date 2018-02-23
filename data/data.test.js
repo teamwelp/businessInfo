@@ -110,6 +110,16 @@ describe('fixed fields generation', () => {
 
 describe('hours object generation', () => {
   test('should have hours property', () => {
-
+    expect(fakeData.toHaveProperty('hours').toBe(true));
+  });
+  test('should have objects with Mon and Tue properties', () => {
+    expect(typeof fakeData.hours).toBe('object');
+    expect(fakeData.hours.toHaveProperty('Mon'));
+    expect(fakeData.hours.toHaveProperty('Tue'));
+  });
+  test('Mon property should be object with open and close properties', () => {
+    expect(typeof fakeData.hours.Mon).toBe('object');
+    expect(fakeData.hours.Mon.open).toBeDefined();
+    expect(fakeData.hours.Mon.close).toBeDefined();
   });
 });
