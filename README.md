@@ -17,7 +17,15 @@
 
 ## Usage
 
-> Some usage instructions
+To test out my code: clone this repo, then checkout to the feature you want to test, run npm install and npm test. In the terminal:
+
+```sh
+git clone https://github.com/teamwelp/businessInfo.git
+cd businessInfo
+git checkout -b feature/data-generation
+npm install
+npm test
+```
 
 ## Requirements
 

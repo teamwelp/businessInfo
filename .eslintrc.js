@@ -6,5 +6,9 @@
  */
 
 module.exports = {
-  extends: './node_modules/eslint-config-hackreactor/index.js'
+  extends: 'hackreactor',
+  rules: {
+    // Rules here will override the 'hackreactor' configuration
+    // http://eslint.org/docs/rules/
+  }
 };
