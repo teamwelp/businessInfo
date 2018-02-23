@@ -17,7 +17,9 @@
 
 ## Usage
 
-> Some usage instructions
+To test out my code: clone this repo, then checkout to the feature you want to test, or stay in master branch to test what I've committed to master. Then in the terminal:
+npm install
+npm test
 
 ## Requirements
 
