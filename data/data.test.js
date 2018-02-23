@@ -126,3 +126,12 @@ describe('hours object generation', () => {
     expect(fakeData.hours[0].Mon.close).toBeDefined();
   });
 });
+
+describe('calculated string field', () => {
+  test('should have businessLink field', () => {
+    expect(fakeData).toHaveProperty('businessLink');
+  });
+  test('should have string values', () => {
+    expect(typeof fakeData.businessLink[0]).toBe('string');
+  });
+});
