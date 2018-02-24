@@ -105,7 +105,6 @@ describe('fixed fields generation', () => {
   });
   test('should all be equal', () => {
     fixedFields.forEach( (field) => {
-      console.log(field);
       expect(fakeData[field][0]).toEqual(fakeData[field][199]);
     });
   });

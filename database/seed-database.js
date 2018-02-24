@@ -88,19 +88,31 @@ const generateSaveDocPromises = (newBusinesses) => {
   for (let i = 0; i < newBusinesses.length; i++) {
     let saveDocPromise = new Promise( (resolve, reject) => {
       newBusinesses[i].save( (err, data) => {
+        console.log('saved!');
         resolve(data);
       });
     });
+    saveDocPromises.push(saveDocPromise);
   }
+  return saveDocPromises;
 };
 
-const seedDb = () => {
-  Promise.all([])
-    .then(mongoose.disconnect());
+const seedDb = (saveDocPromises) => {
+  return Promise.all(saveDocPromises)
+    .then( () => {
+      console.log('saved!');
+      mongoose.disconnect();
+    })
+    .catch( (error) => {
+      console.log(error);
+    });
 };
+
+const docs = makeDocs();
+const docPromises = generateSaveDocPromises(docs);
+seedDb(docPromises);
 
 module.exports.makeDocs = makeDocs;
+module.exports.generateSaveDocPromises = generateSaveDocPromises;
 module.exports.Business = Business;
 module.exports.seedDb = seedDb;
-
-mongoose.disconnect();

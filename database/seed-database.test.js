@@ -6,19 +6,25 @@ beforeAll(() => {
 });
 
 describe('helper functions to database', () => {
+  let docs = db.makeDocs();
   test('should create array of documents', () => {
-    expect(Array.isArray(db.makeDocs())).toBe(true);
-  })
+    expect(Array.isArray(docs)).toBe(true);
+  });
+  test('should create array of promises', () => {
+    expect(Array.isArray(db.generateSaveDocPromises(docs))).toBe(true);
+  });
 });
 
-// describe('should spin up database and seeded data to database', () => {
-//   test('should add seeded data to database', async () => {
-//     await db.seedDb();
-//     const result = await db.Business.findById(1).exec();
-//     expect(result).toBeDefined();
-//   });
-// });
+describe('should spin up database and seeded data to database', () => {
+  let docs = db.makeDocs();
+  test('should add seeded data to database', async () => {
+    let docPromises = db.generateSaveDocPromises(docs);
+    await db.seedDb(docPromises);
+    const result = await db.Business.findById(1).exec();
+    expect(result).toBeDefined();
+  });
+});
 
 afterAll(() => {
-  mongooose.disconnect(done);
+  mongoose.disconnect(done);
 });
