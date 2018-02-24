@@ -105,7 +105,7 @@ const generateFakeData = (mockupData = {}) => {
   mockupData.priceRangeScale = randomIntegers(1, 4);
   mockupData.priceRangeLow = randomIntegers(11, 30);
   mockupData.priceRangeRange = randomIntegers(5, 20);
-  mockupData.healthInpection = randomIntegers(70, 100);
+  mockupData.healthInspection = randomIntegers(70, 100);
   mockupData.addressNumber = randomIntegers(75, 1547);
   mockupData.phoneOfficeCode = randomIntegers(303, 979);
   mockupData.phoneLineCode = randomIntegers(1001, 9009);

@@ -1,4 +1,6 @@
-const mongooose = require('mongoose');
+const generateFakeData = require('../data/data.js');
+const mongoose = require('mongoose');
+const data = generateFakeData();
 mongoose.connect('mongodb://localhost/businessInfo');
 
 const HoursForDay = mongoose.Schema({
@@ -46,7 +48,8 @@ const businessSchema = mongoose.Schema({
 
 const Business = mongoose.model('Business', businessSchema);
 
-const seedDb = () => {
+const makeDocs = () => {
+  let newBusinesses = [];
   for (let i = 0; i < 200; i++) {
     let newBusiness = new Business({
       carParking: data.carParking[i],
@@ -75,10 +78,29 @@ const seedDb = () => {
       longDescription: data.longDescription[i],
       name: data.name[i],
     });
+    newBusinesses.push(newBusiness);
+  }
+  return newBusinesses;
+};
+
+const generateSaveDocPromises = (newBusinesses) => {
+  saveDocPromises = [];
+  for (let i = 0; i < newBusinesses.length; i++) {
+    let saveDocPromise = new Promise( (resolve, reject) => {
+      newBusinesses[i].save( (err, data) => {
+        resolve(data);
+      });
+    });
   }
 };
 
+const seedDb = () => {
+  Promise.all([])
+    .then(mongoose.disconnect());
+};
+
+module.exports.makeDocs = makeDocs;
 module.exports.Business = Business;
 module.exports.seedDb = seedDb;
 
-// mongoose.disconnect();
+mongoose.disconnect();

@@ -2,7 +2,7 @@ const data = require('./data.js');
 
 const fakeData = data();
 const booleanFields = ['claimedByOwner', 'acceptsCreditCards', 'bikeParking', 'goodForKids', 'byApptOnly', 'isYelpAdvertiser'];
-const integerFields = ['addressNumber', 'addressZip', 'healthInpection', 'id', 'phoneLineCode', 'phoneOfficeCode', 'priceRangeLow', 'priceRangeRange', 'priceRangeScale'];
+const integerFields = ['addressNumber', 'addressZip', 'healthInspection', 'id', 'phoneLineCode', 'phoneOfficeCode', 'priceRangeLow', 'priceRangeRange', 'priceRangeScale'];
 const stringFields = ['name', 'addressStreet', 'longDescription'];
 const arrayOfStringFields = ['carParking', 'metatags'];
 const fixedFields = ['addressCity', 'addressState', 'phoneAreaCode'];
