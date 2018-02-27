@@ -1,52 +1,7 @@
 const generateFakeData = require('../data/data.js');
 const mongoose = require('mongoose');
 const data = generateFakeData();
-mongoose.connect('mongodb://localhost/businessInfo');
-
-const HoursForDay = mongoose.Schema({
-  open: Number,
-  close: Number,
-});
-
-const Hours = mongoose.Schema({
-  Sun: HoursForDay,
-  Mon: HoursForDay,
-  Tue: HoursForDay,
-  Wed: HoursForDay,
-  Thu: HoursForDay,
-  Fri: HoursForDay,
-  Sat: HoursForDay,
-});
-
-const businessSchema = mongoose.Schema({
-  carParking: Array,
-  metatags: Array,
-  acceptsCreditCards: Boolean,
-  bikeParking: Boolean,
-  byApptOnly: Boolean,
-  claimedByOwner: Boolean,
-  goodForKids: Boolean,
-  isYelpAdvertiser: Boolean,
-  id: Number,
-  phoneAreaCode: Number,
-  addressNumber: Number,
-  healthInspection: Number,
-  phoneLineCode: Number,
-  phoneOfficeCode: Number,
-  priceRangeLow: Number,
-  priceRangeRange: Number,
-  priceRangeScale: Number,
-  hours: Hours,
-  businessLink: String,
-  addressCity: String,
-  addressState: String,
-  addressStreet: String,
-  addressZip: String,
-  longDescription: String,
-  name: String,
-});
-
-const Business = mongoose.model('Business', businessSchema);
+const { Business } = require('./db-helpers');
 
 const makeDocs = () => {
   let newBusinesses = [];
@@ -97,20 +52,22 @@ const generateSaveDocPromises = (newBusinesses) => {
   return saveDocPromises;
 };
 
-const seedDb = (saveDocPromises) => {
-  return Promise.all(saveDocPromises)
+const docs = makeDocs();
+const docPromises = generateSaveDocPromises(docs);
+
+const seedDb = () => {
+  mongoose.connect('mongodb://localhost/businessInfo')
+    .then(mongoose.connection.dropDatabase())
+    .then(Promise.all(saveDocPromises))
     .then( () => {
-      console.log('saved!');
-      mongoose.disconnect();
+      mongoose.connection.close();
     })
     .catch( (error) => {
       console.log(error);
     });
 };
 
-const docs = makeDocs();
-const docPromises = generateSaveDocPromises(docs);
-seedDb(docPromises);
+seedDb();
 
 module.exports.makeDocs = makeDocs;
 module.exports.generateSaveDocPromises = generateSaveDocPromises;

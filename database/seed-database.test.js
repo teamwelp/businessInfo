@@ -1,30 +1,20 @@
-const db = require('./seed-database.js');
 const mongoose = require('mongoose');
+const {Business} = require('./db-helpers');
 
 beforeAll(() => {
   mongoose.connect('mongodb://localhost/businessInfo');
 });
 
-describe('helper functions to database', () => {
-  let docs = db.makeDocs();
-  test('should create array of documents', () => {
-    expect(Array.isArray(docs)).toBe(true);
-  });
-  test('should create array of promises', () => {
-    expect(Array.isArray(db.generateSaveDocPromises(docs))).toBe(true);
-  });
-});
-
-describe('should spin up database and seeded data to database', () => {
-  let docs = db.makeDocs();
-  test('should add seeded data to database', async () => {
-    let docPromises = db.generateSaveDocPromises(docs);
-    await db.seedDb(docPromises);
-    const result = await db.Business.findById(1).exec();
-    expect(result).toBeDefined();
-  });
+describe('should check for seeded data to database', () => {
+  test('should add seeded data to database', done => {
+    Business.find({id: 201}).exec( (err, result) => {
+      if (err) { console.log(err); }
+      expect(result).toBeDefined();
+      done();
+    });
+  }); 
 });
 
 afterAll(() => {
-  mongoose.disconnect(done);
+  mongoose.disconnect();
 });
