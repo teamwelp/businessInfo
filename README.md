@@ -24,6 +24,7 @@ git clone https://github.com/teamwelp/businessInfo.git
 cd businessInfo
 git checkout -b feature/data-generation
 npm install
+npm start
 npm test
 ```
 
