@@ -1,5 +1,6 @@
 const data = require('./data');
 
+
 const fakeData = data();
 const { booleanFields, integerFields, stringFields, arrayOfStringFields, fixedFields, objectField, calculatedStringField, hasRequisiteFields, isRandom } = require('../test/helpers');
 
