@@ -63,12 +63,12 @@ describe('random integer generation', () => {
       expect(typeof fakeData[field][0]).toBe('number');
     });
   });
-
-  test('should be randomly generated (will sometimes fail)', () => {
-    integerFields.forEach( (field) => {
-      expect(fakeData[field][0] === fakeData[field][199]).toBe(false);
-    });
-  });
+  // uncomment for randomness testing
+  // test('should be randomly generated (will sometimes fail)', () => {
+  //   integerFields.forEach( (field) => {
+  //     expect(fakeData[field][0] === fakeData[field][199]).toBe(false);
+  //   });
+  // });
 });
 
 describe('random string generation', () => {
@@ -80,9 +80,10 @@ describe('random string generation', () => {
       expect(typeof fakeData[field][0]).toBe('string');
     });
   });
-  test('should be randomly generated (will sometimes fail)', () => {
-    isRandom(stringFields);
-  });
+  // uncomment for randomness testing 
+  // test('should be randomly generated (will sometimes fail)', () => {
+  //   isRandom(stringFields);
+  // });
 });
 
 describe('random array generation', () => {
@@ -94,9 +95,10 @@ describe('random array generation', () => {
       expect(Array.isArray(fakeData[field][0])).toBe(true);
     });
   });
-  test('should be randomly generated', () => {
-    isRandom(arrayOfStringFields);
-  });
+  // uncomment for randomness testing
+  // test('should be randomly generated', () => {
+  //   isRandom(arrayOfStringFields);
+  // });
 });
 
 describe('fixed fields generation', () => {
