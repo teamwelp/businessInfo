@@ -1,4 +1,4 @@
-const data = require('./data.js');
+const data = require('../data/data.js');
 
 const fakeData = data();
 const booleanFields = ['claimedByOwner', 'acceptsCreditCards', 'bikeParking', 'goodForKids', 'byApptOnly', 'isYelpAdvertiser'];
