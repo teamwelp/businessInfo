@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const data = generateFakeData();
 const { Business } = require('./db-helpers');
 
+
 const makeDocs = () => {
   let newBusinesses = [];
   for (let i = 0; i < 200; i++) {
