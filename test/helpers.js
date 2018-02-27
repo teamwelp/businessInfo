@@ -17,7 +17,6 @@ module.exports.isRandom = (fields, fakeData) => {
   });
 };
 
-module.exports.allFields = [].concat(booleanFields, integerFields, stringFields, arrayOfStringFields, fixedFields, [objectField, calculatedStringField]);
 module.exports.booleanFields = booleanFields;
 module.exports.integerFields = integerFields;
 module.exports.stringFields = stringFields;
@@ -25,3 +24,4 @@ module.exports.arrayOfStringFields = arrayOfStringFields;
 module.exports.fixedFields = fixedFields;
 module.exports.objectField = objectField;
 module.exports.calculatedStringField = calculatedStringField;
+module.exports.allFields = [].concat(booleanFields, integerFields, stringFields, arrayOfStringFields, fixedFields, [objectField, calculatedStringField]);
