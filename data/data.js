@@ -25,20 +25,6 @@ const randomBoolean = () => {
   }
   return true;
 };
-const randomIntegers = (start, end, length = 200) => {
-  let arr = [];
-  for (let i = 0; i < length; i++) {
-    arr.push(_.random(start, end));
-  }
-  return arr;
-};
-const randomItemFromArray = (items) => {
-  let randArray = randomIntegers(0, items.length);
-  for (var i = 0; i < randArray.length; i++) {
-    randArray[i] = items[randArray[i]];
-  }
-  return randArray;
-};
 const generateRandomLoremIpsum = (sentenceCount, totalNumber = 200) => {
   let randomText = [];
   for (var i = 0; i < 200; i++) {
@@ -46,14 +32,24 @@ const generateRandomLoremIpsum = (sentenceCount, totalNumber = 200) => {
   }
   return randomText;
 };
+const randomIntegers = (start, end, length = 200) => {
+  let arr = [];
+  for (let i = 0; i < length; i++) {
+    arr.push(_.random(start, end - 1));
+  }
+  return arr;
+};
+const randomItemFromArray = (items, arrayLength = items.length) => {
+  let randArray = randomIntegers(0, items.length, arrayLength);
+  for (var i = 0; i < randArray.length; i++) {
+    randArray[i] = items[randArray[i]];
+  }
+  return randArray;
+};
 const generateRandomArrayOfItems = (source, arrayLength, totalNumber = 200) => {
   let result = [];
   for (let i = 0; i < totalNumber; i++) {
-    let array = [];
-    for (let j = 0; j < arrayLength; j++) {
-      array.push(randomItemFromArray(source));
-    }
-    result.push(array);
+    result.push(randomItemFromArray(source, arrayLength));
   }
   return result;
 };
@@ -105,7 +101,7 @@ const generateFakeData = (mockupData = {}) => {
   mockupData.priceRangeScale = randomIntegers(1, 4);
   mockupData.priceRangeLow = randomIntegers(11, 30);
   mockupData.priceRangeRange = randomIntegers(5, 20);
-  mockupData.healthInpection = randomIntegers(70, 100);
+  mockupData.healthInspection = randomIntegers(70, 100);
   mockupData.addressNumber = randomIntegers(75, 1547);
   mockupData.phoneOfficeCode = randomIntegers(303, 979);
   mockupData.phoneLineCode = randomIntegers(1001, 9009);
@@ -115,7 +111,7 @@ const generateFakeData = (mockupData = {}) => {
   mockupData.addressState = new Array(200).fill('CA');
   // random string values
   const streets = ['Howard Street', 'Mission Street', 'Market Street'];
-  mockupData.addressStreet = randomItemFromArray(streets);
+  mockupData.addressStreet = randomItemFromArray(streets, 200);
   mockupData.longDescription = generateRandomLoremIpsum(10);
   //generate random arrays
   const metatags = ['Seafood', 'Bars', 'Ramen', 'Fusion', 'Breakfast', 'Brunch', 'Lunch', 'Dinner', 'Soul Food', 'Burgers', 'Waffles', 'Desserts', 'Bakeries', 'Coffee'];
