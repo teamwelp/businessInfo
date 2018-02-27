@@ -10,7 +10,7 @@
   "scripts": {
     "test": "jest",
     "coverage": "jest --coverage",
-    "start": "node ./database/seed-database.js && mongod"
+    "start": "node ./database/seed-database.js"
   },
   "dependencies": {},
   "devDependencies": {

@@ -1,25 +1,6 @@
-const data = require('./data.js');
-
+const data = require('./data');
 const fakeData = data();
-const booleanFields = ['claimedByOwner', 'acceptsCreditCards', 'bikeParking', 'goodForKids', 'byApptOnly', 'isYelpAdvertiser'];
-const integerFields = ['addressNumber', 'addressZip', 'healthInspection', 'id', 'phoneLineCode', 'phoneOfficeCode', 'priceRangeLow', 'priceRangeRange', 'priceRangeScale'];
-const stringFields = ['name', 'addressStreet', 'longDescription'];
-const arrayOfStringFields = ['carParking', 'metatags'];
-const fixedFields = ['addressCity', 'addressState', 'phoneAreaCode'];
-const objectField = 'hours';
-const calculatedStringField = 'businessLink';
-
-const hasRequisiteFields = (fields) => {
-  for (var i = 0; i < fields.length; i++) {
-    expect(fakeData).toHaveProperty(fields[i]);
-  }
-};
-
-const isRandom = (fields) => {
-  fields.forEach((field) => {
-    expect(fakeData[field][0] === fakeData[field][199]).toBe(false);
-  });
-};
+const { booleanFields, integerFields, stringFields, arrayOfStringFields, fixedFields, objectField, calculatedStringField, hasRequisiteFields, isRandom } = require('../test/helpers');
 
 describe('fake data generation', () => {
   test('should generate an object', () => {
@@ -37,7 +18,7 @@ describe('fake data generation', () => {
 
 describe('boolean value generation', () => {
   test('should have the requisite boolean fields', () => {
-    hasRequisiteFields(booleanFields);
+    hasRequisiteFields(booleanFields, fakeData);
   });
 
   test('should have boolean fields of length 200', () => {
@@ -55,7 +36,7 @@ describe('boolean value generation', () => {
 
 describe('random integer generation', () => {
   test('should have the requisite integer fields', () => {
-    hasRequisiteFields(integerFields);
+    hasRequisiteFields(integerFields, fakeData);
   });
 
   test('should have integer values', () => {
@@ -73,7 +54,7 @@ describe('random integer generation', () => {
 
 describe('random string generation', () => {
   test('should have the requisite fields', () => {
-    hasRequisiteFields(stringFields);
+    hasRequisiteFields(stringFields, fakeData);
   });
   test('should have string values', () => {
     stringFields.forEach( (field) => {
@@ -82,13 +63,13 @@ describe('random string generation', () => {
   });
   // uncomment for randomness testing 
   // test('should be randomly generated (will sometimes fail)', () => {
-  //   isRandom(stringFields);
+  //   isRandom(stringFields, fakeData);
   // });
 });
 
 describe('random array generation', () => {
   test('should have the requisite fields', () => {
-    hasRequisiteFields(arrayOfStringFields);
+    hasRequisiteFields(arrayOfStringFields, fakeData);
   });
   test('should have array values', () => {
     arrayOfStringFields.forEach((field) => {
@@ -97,13 +78,13 @@ describe('random array generation', () => {
   });
   // uncomment for randomness testing
   // test('should be randomly generated', () => {
-  //   isRandom(arrayOfStringFields);
+  //   isRandom(arrayOfStringFields, fakeData);
   // });
 });
 
 describe('fixed fields generation', () => {
   test('should have the requisite fields', () => {
-    hasRequisiteFields(arrayOfStringFields);
+    hasRequisiteFields(arrayOfStringFields, fakeData);
   });
   test('should all be equal', () => {
     fixedFields.forEach( (field) => {
