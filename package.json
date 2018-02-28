@@ -10,7 +10,8 @@
   "scripts": {
     "test": "jest --watch",
     "coverage": "jest --coverage",
-    "start": "node ./database/seed-database.js"
+    "start": "node ./database/seed-database.js",
+    "transpile": "babel ./client/dev --out-dir ./client/dist --source-maps --watch"
   },
   "dependencies": {},
   "devDependencies": {
