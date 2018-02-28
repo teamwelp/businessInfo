@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
-HoursForDay = mongoose.Schema({
+const HoursForDay = mongoose.Schema({
   open: Number,
   close: Number,
 });
 
-Hours = mongoose.Schema({
+const Hours = mongoose.Schema({
   Sun: HoursForDay,
   Mon: HoursForDay,
   Tue: HoursForDay,
@@ -15,7 +15,7 @@ Hours = mongoose.Schema({
   Sat: HoursForDay,
 });
 
-businessSchema = mongoose.Schema({
+const businessSchema = mongoose.Schema({
   carParking: Array,
   metatags: Array,
   acceptsCreditCards: Boolean,

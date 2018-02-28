@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer');
 
 test('test static html', async () => {
   let browser = await puppeteer.launch({
-    headless: false,
+    headless: true,
   });
   let page = await browser.newPage();
 
