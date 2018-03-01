@@ -14,8 +14,8 @@ export default class App extends React.Component {
     return (
       <div>
         <h1>{this.state.data.name}</h1>
-        <h3>Restaurant Claimed By Owner: {this.state.data.claimedByOwner}</h3>
-        
+        <h3>Restaurant Claimed By Owner: {this.state.data.claimedByOwner.toString()}</h3>
+        <h2>{this.state.data.metatags.join(', ')}</h2>;
       </div>
     );
   }
