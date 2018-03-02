@@ -1,9 +1,9 @@
+import starterData from './starterdata';
+import Header from '../client/dev/header';
 import React from 'react';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import Header from '../client/dev/header';
 import puppeteer from 'puppeteer';
-import starterData from './starterdata';
 import renderer from 'react-test-renderer';
 
 const { shallow } = Enzyme;
