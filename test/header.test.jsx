@@ -4,6 +4,7 @@ import Adapter from 'enzyme-adapter-react-16';
 import Header from '../client/dev/header';
 import puppeteer from 'puppeteer';
 import starterData from './starterdata';
+import renderer from 'react-test-renderer';
 
 const { shallow } = Enzyme;
 Enzyme.configure({ adapter: new Adapter() });
@@ -26,6 +27,15 @@ describe('Header Component Unit Test', () => {
     expect(wrapper.find('.metatags').text()).toBe('Soul Food, Bars, Dinner, Brunch');
   });
 });
+
+describe('Header Component Snapshot Test', () => {
+  test('renders correctly', () => {
+    const newSnap = renderer
+      .create(<Header data={starterData} />)
+      .toJSON();
+    expect(newSnap).toMatchSnapshot();
+  });
+})
 
 describe('Header Component End-to-End Test', () => {
   test('rendering default page from server', async () => {
