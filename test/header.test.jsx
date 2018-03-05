@@ -1,30 +1,42 @@
-import starterData from './starterdata';
-import Header from '../client/dev/header';
 import React from 'react';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import puppeteer from 'puppeteer';
 import renderer from 'react-test-renderer';
+import starterData from './starterdata';
+import Header from '../client/dev/header';
 
 const { shallow } = Enzyme;
 Enzyme.configure({ adapter: new Adapter() });
+const wrapper = shallow(<Header data={starterData} />);
 
-describe('Header Component Unit Test', () => {
+describe('Upper Header Component Test', () => {
   test('renders a component', () => {
-    const wrapper = shallow(<Header data={starterData} />);
     expect(wrapper.find('.header')).toHaveLength(1);
   });
   test('renders restaurant name from starter data', () => {
-    const wrapper = shallow(<Header data={starterData} />);
     expect(wrapper.find('.name').text()).toBe('Oleg\'s Burger Palace');
   });
   test('renders restaurant claimedByOwner from starter data', () => {
-    const wrapper = shallow(<Header data={starterData} />);
     expect(wrapper.find('.claimed').text()).toBe('Claimed');
   });
   test('renders restaurant metatags', () => {
-    const wrapper = shallow(<Header data={starterData} />);
     expect(wrapper.find('.metatags').text()).toBe('Soul Food, Bars, Dinner, Brunch');
+  });
+});
+
+describe('Lower Header Component Test', () => {
+  test('renders correct address', () =>  {
+    expect(wrapper.find('.addressPhone').first().text()).toBe('301 Mission StreetSan Francisco, CA 94103');
+  });
+  test('renders correct phone number', () => {
+    expect(wrapper.find('.addressPhone').last().text()).toBe('(415) 421-7940');
+  });
+  test('renders correct link text', () => {
+    expect(wrapper.find('.contactLink').first().text()).toBe('http://olegsburgerpalace.com');
+  });
+  test('renders correct phone text', () => {
+    expect(wrapper.find('.contactLink').last().text()).toBe('Send to your Phone');
   });
 });
 

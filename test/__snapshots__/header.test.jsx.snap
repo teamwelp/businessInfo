@@ -88,7 +88,7 @@ exports[`Header Component Snapshot Test renders correctly 1`] = `
         </svg>
       </div>
       <div
-        className="addressBox"
+        className="addressPhone"
       >
         301
          
@@ -126,7 +126,7 @@ exports[`Header Component Snapshot Test renders correctly 1`] = `
         </svg>
       </div>
       <div
-        className="addressBox"
+        className="addressPhone"
       >
         (
         415

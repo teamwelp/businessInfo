@@ -37,7 +37,7 @@ export default function (props) {
       <div className={styles.contact}>
         <div className={styles.address}>
           <div className={styles.grayicon}><FaLocation /></div>
-          <div className={styles.addressBox}>
+          <div className={styles.addressPhone}>
             {props.data.addressNumber} {props.data.addressStreet} 
             <br />
             {props.data.addressCity}, {props.data.addressState} {props.data.addressZip}
@@ -45,7 +45,7 @@ export default function (props) {
         </div>
         <div>
           <div className={styles.grayicon}><FaPhone /></div>
-          <div className={styles.addressBox}>
+          <div className={styles.addressPhone}>
             ({props.data.phoneAreaCode}) {props.data.phoneOfficeCode}-{props.data.phoneLineCode}
           </div>
         </div>
