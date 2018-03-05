@@ -23,6 +23,11 @@
 .clockOpen {
   color: red;
 }
+.openNow {
+  color: red;
+  font-size: 14px;
+  font-weight: bold;
+}
 .healthIcon {
   padding: 2px;
   border:  1px solid #999;
