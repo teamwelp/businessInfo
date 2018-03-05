@@ -7,6 +7,7 @@
   - https://github.com/teamwelp/reviews
   - https://github.com/teamwelp/relatedBusinesses
   - https://github.com/teamwelp/photoGallery
+  - https://github.com/teamwelp/nicksProxy
 
 ## Table of Contents
 
@@ -31,19 +32,7 @@ npm test
 
 ## Requirements
 
-An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
-
-- Node 6.13.0
-- etc
+https://github.com/teamwelp/businessInfo/blob/master/package.json
 
 ## Development
-
-### Installing Dependencies
-
-From within the root directory:
-
-```sh
-npm install
-npm start
-```
 
