@@ -4,24 +4,22 @@
   margin-right: 150px;
   border: 1px solid #999;
 }
-.hoursTodayBox {
+.categoryBox {
   display: flex;
   height: 90px;
 }
-.clockOpen {
+.icon {
   color: grey;
   font-size: 25px;
   width: 50px;
   margin: auto;
 }
-.clockClosed {
+.clockOpen {
   color: red;
-  font-size: 25px;
-  width: 50px;
-  margin: auto;
 }
 .contentBox {
   display: flex;
+  flex-direction: column;
   align-content: center;
   font-size: 15px;
   width: 250px;

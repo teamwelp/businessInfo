@@ -1,7 +1,8 @@
 const _ = require('lodash');
 const loremIpsum = require('lorem-ipsum');
 const names = require('./names.js');
-const namesData = {businesses: names.businesses, users: names.users};
+
+const namesData = { businesses: names.businesses, users: names.users };
 
 const extractProperty = (data, property) => {
   let arr = [];
@@ -13,8 +14,8 @@ const extractProperty = (data, property) => {
 const generateLinks = (name) => {
   let links = [];
   for (let i = 0; i < name.length; i++) {
-    let link = name[i].replace(/\s|\'/g, '').toLowerCase();
-    link = 'http://' + link + '.com';
+    let link = name[i].replace(/\s|'/g, '').toLowerCase();
+    link = `http://www.${link}.com`;
     links.push(link);
   }
   return links;
@@ -27,7 +28,7 @@ const randomBoolean = () => {
 };
 const generateRandomLoremIpsum = (sentenceCount, totalNumber = 200) => {
   let randomText = [];
-  for (var i = 0; i < 200; i++) {
+  for (let i = 0; i < totalNumber; i += 1) {
     randomText.push(loremIpsum({ count: sentenceCount, units: 'sentences' }));
   }
   return randomText;
@@ -40,8 +41,8 @@ const randomIntegers = (start, end, length = 200) => {
   return arr;
 };
 const randomItemFromArray = (items, arrayLength = items.length) => {
-  let randArray = randomIntegers(0, items.length, arrayLength);
-  for (var i = 0; i < randArray.length; i++) {
+  const randArray = randomIntegers(0, items.length, arrayLength);
+  for (let i = 0; i < randArray.length; i += 1) {
     randArray[i] = items[randArray[i]];
   }
   return randArray;
@@ -113,7 +114,7 @@ const generateFakeData = (mockupData = {}) => {
   const streets = ['Howard Street', 'Mission Street', 'Market Street'];
   mockupData.addressStreet = randomItemFromArray(streets, 200);
   mockupData.longDescription = generateRandomLoremIpsum(10);
-  //generate random arrays
+  // generate random arrays
   const metatags = ['Seafood', 'Bars', 'Ramen', 'Fusion', 'Breakfast', 'Brunch', 'Lunch', 'Dinner', 'Soul Food', 'Burgers', 'Waffles', 'Desserts', 'Bakeries', 'Coffee'];
   mockupData.metatags = generateRandomArrayOfItems(metatags, 4);
   const carTags = ['Street', 'Garage, Validated', 'Garage, Paid', 'Parking Lot', 'Valet'];

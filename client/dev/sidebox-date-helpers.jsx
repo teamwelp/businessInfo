@@ -27,9 +27,20 @@ const getTodaysHoursContent = (todaysHours) => {
 const RenderHoursToday = (props) => {
   if (props.todaysHours) {
     const hoursTodayContent = getTodaysHoursContent(props.todaysHours);
-    return <span>Today <em>{hoursTodayContent}</em></span>;
+    return <span>Today <b>{hoursTodayContent}</b></span>;
   }
   return <span>Closed today</span>;
 };
 
-export { getTodaysHours, getTodaysHoursContent, RenderHoursToday };
+const isOpen = (todaysHours) => {
+  if (!todaysHours) return false;
+  const today = new Date(Date.now());
+  const open = new Date(today.getFullYear(), today.getMonth(), today.getDate(), todaysHours.open);
+  const close = new Date(today.getFullYear(), today.getMonth(), today.getDate(), todaysHours.close);
+  if (today.valueOf() >= open.valueOf() && today.valueOf() <= close.valueOf()) {
+    return true;
+  }
+  return false;
+};
+
+export { getTodaysHours, getTodaysHoursContent, RenderHoursToday, isOpen };
