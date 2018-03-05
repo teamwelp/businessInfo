@@ -23,7 +23,7 @@ export default (props) => {
         <FaClock className={`${styles.icon} ${clockIcon}`} />
         <div className={styles.contentBox}>
           <span className={styles.hoursToday}><RenderHoursToday todaysHours={todaysHours} /></span>
-          <span className={openNowStyle}>{openNowContent}</span>
+          <span className={openNowStyle}><b>{openNowContent}</b></span>
         </div>
       </div>
       <div className={styles.categoryBox}>

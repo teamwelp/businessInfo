@@ -29,7 +29,7 @@ const RenderHoursToday = (props) => {
     const hoursTodayContent = getTodaysHoursContent(props.todaysHours);
     return <span>Today <b>{hoursTodayContent}</b></span>;
   }
-  return <span>Closed today</span>;
+  return <span><b>Closed today</b></span>;
 };
 
 const isOpen = (todaysHours) => {
