@@ -1,0 +1,156 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render Component snapshot test 1`] = `
+<div
+  className="sidebox"
+>
+  <div
+    className="categoryBox"
+  >
+    <svg
+      className="icon clockOpen"
+      fill="currentColor"
+      height="1em"
+      preserveAspectRatio="xMidYMid meet"
+      style={
+        Object {
+          "color": undefined,
+          "verticalAlign": "middle",
+        }
+      }
+      viewBox="0 0 40 40"
+      width="1em"
+    >
+      <g>
+        <path
+          d="m23 12.1v10q0 0.4-0.2 0.6t-0.5 0.2h-7.2q-0.3 0-0.5-0.2t-0.2-0.6v-1.4q0-0.3 0.2-0.5t0.5-0.2h5v-7.9q0-0.3 0.2-0.5t0.6-0.2h1.4q0.3 0 0.5 0.2t0.2 0.5z m9.3 7.9q0-3.3-1.6-6.1t-4.5-4.4-6.1-1.6-6.1 1.6-4.4 4.4-1.6 6.1 1.6 6.1 4.4 4.4 6.1 1.6 6.1-1.6 4.5-4.4 1.6-6.1z m5 0q0 4.7-2.3 8.6t-6.3 6.2-8.6 2.3-8.6-2.3-6.2-6.2-2.3-8.6 2.3-8.6 6.2-6.2 8.6-2.3 8.6 2.3 6.3 6.2 2.3 8.6z"
+        />
+      </g>
+    </svg>
+    <div
+      className="contentBox column"
+    >
+      <span
+        className="hoursToday"
+      >
+        <span>
+          Today 
+          <b>
+            9:00 am - 6:00 pm
+          </b>
+        </span>
+      </span>
+      <span
+        className="openNow"
+      >
+        <b>
+          Open now
+        </b>
+      </span>
+    </div>
+  </div>
+  <span
+    className="hl"
+  />
+  <div
+    className="categoryBox"
+  >
+    <svg
+      className="icon"
+      fill="currentColor"
+      height="1em"
+      preserveAspectRatio="xMidYMid meet"
+      style={
+        Object {
+          "color": undefined,
+          "verticalAlign": "middle",
+        }
+      }
+      viewBox="0 0 40 40"
+      width="1em"
+    >
+      <g>
+        <path
+          d="m24.8 19.2l-2.5 2.4 11.5 11.5-2.3 2.4-11.5-11.5-11.5 11.5-2.3-2.4 16.2-16.2q-0.9-1.9-0.3-4.4t2.7-4.5q2.4-2.4 5.4-2.7t4.7 1.4 1.5 4.8-2.8 5.5q-2 1.9-4.5 2.5t-4.3-0.3z m-11.3 3.1l-7-7.1q-2-1.9-2-4.7t2-4.6l11.7 11.6z"
+        />
+      </g>
+    </svg>
+    <div
+      className="contentBox"
+    >
+      <a
+        className="boldLink"
+        href="https://www.yelp.com/menu/gary-danko-san-francisco"
+      >
+        Full menu
+      </a>
+    </div>
+  </div>
+  <span
+    className="hl"
+  />
+  <div
+    className="categoryBox"
+  >
+    <div
+      className="icon"
+    >
+      <div
+        className="priceIcon"
+      >
+        <div
+          className="priceIconRed"
+        >
+          $
+        </div>
+        <div
+          className="priceIconGray"
+        >
+          $$$
+        </div>
+      </div>
+    </div>
+    <span
+      className="contentBox"
+    >
+      Price Range  
+      <b>
+        $29-38
+      </b>
+    </span>
+  </div>
+  <span
+    className="hl"
+  />
+  <div
+    className="categoryBox"
+  >
+    <div
+      className="icon flexCenter"
+    >
+      <div
+        className="healthIcon"
+      >
+        88
+      </div>
+    </div>
+    <div
+      className="contentBox"
+    >
+      <a
+        className="boldLink"
+        href="https://www.yelp.com/inspections/gary-danko-san-francisco"
+      >
+        Health Inspection
+      </a>
+      <span
+        className="healthtext"
+      >
+         
+        88
+         out of 100
+      </span>
+    </div>
+  </div>
+</div>
+`;

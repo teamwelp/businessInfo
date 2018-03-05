@@ -11,7 +11,7 @@ const { shallow } = Enzyme;
 Enzyme.configure({ adapter: new Adapter() });
 Date.now = jest.fn(() => new Date('June 4, 2018 01:00:00').valueOf());
 
-describe('Sidebox Helpers Unit Test', () => {
+describe('Sidebox Date Helpers Unit Test', () => {
   test('return correct hours for getTodaysHours on Monday', () => {
     expect(getTodaysHours(starterData.hours).open).toBe(9);
     expect(getTodaysHours(starterData.hours).close).toBe(18);
@@ -41,20 +41,28 @@ describe('Sidebox Helpers Unit Test', () => {
   });
 });
 
-describe('render component ', () => {
+describe('Render Component', () => {
   const sideboxRender = shallow(<Sidebox data={starterData} />);
   const contentBox = sideboxRender.find('.contentBox');
-  test('render hours open', () => {
+  test('render hours open component', () => {
     Date.now = jest.fn(() => new Date('June 4, 2018 11:00:00').valueOf());
-    expect(contentBox.first().html()).toBe('<div class="contentBox"><span class="hoursToday"><span>Today <b>9:00 am - 6:00 pm</b></span></span><span class="openNow"><b>Open now</b></span></div>');
+    expect(sideboxRender.find('.hoursToday').text()).toBe('<RenderHoursToday />');
+    expect(sideboxRender.find('.openNow').text()).toBe('Open now');
   });
   test('render full menu', () => {
-    expect(contentBox.at(1).html()).toBe('<div class="contentBox"><a href="https://www.yelp.com/menu/gary-danko-san-francisco" class="menu">Full menu</a></div>');
+    expect(sideboxRender.find('.boldLink').first().text()).toBe('Full menu');
   });
   test('render price range', () => {
-    expect(contentBox.at(2).html()).toBe('<span class="contentBox">Price Range <b>$29-38</b></span>');
+    expect(contentBox.at(2).text()).toBe('Price Range\xa0\xa0$29-38');
   });
   test('render health inspection', () => {
-    expect(contentBox.last().html()).toBe('<div class="contentBox"><a class="boldLink" href="https://www.yelp.com/inspections/gary-danko-san-francisco">Health Inspection</a><span class="healthtext">88 out of 100</span></div>');
+    expect(sideboxRender.find('.boldLink').last().text()).toBe('Health Inspection');
+    expect(sideboxRender.find('.healthtext').text()).toBe('\xa088 out of 100');
+  });
+  test('snapshot test', () => {
+    const newSnap = renderer
+      .create(<Sidebox data={starterData} />)
+      .toJSON();
+    expect(newSnap).toMatchSnapshot();
   });
 });
