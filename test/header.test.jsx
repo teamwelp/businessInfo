@@ -40,6 +40,7 @@ describe('Lower Header Component Test', () => {
   });
 });
 
+
 describe('Header Component Snapshot Test', () => {
   test('renders correctly', () => {
     const newSnap = renderer
