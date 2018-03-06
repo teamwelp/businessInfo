@@ -8,7 +8,7 @@ beforeAll( async () => {
 
 afterAll( async () => {
   await mongoose.disconnect();
-})
+});
 
 describe('should have seeded data in database', () => {
   test('should have data with correct fields in database', done => {
