@@ -1,0 +1,73 @@
+.sidebox {
+  float: right;
+  width: 300px;
+  margin-right: 150px;
+  border: 1px solid #999;
+}
+.categoryBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70px;
+}
+.icon {
+  color: grey;
+  font-size: 25px;
+  width: 50px;
+  margin: auto;
+}
+.flexCenter {
+  display: flex;
+  justify-content: center;
+}
+.clockOpen {
+  color: red;
+}
+.openNow {
+  color: red;
+  font-size: 14px;
+  font-weight: bold;
+}
+.healthIcon {
+  padding: 2px;
+  border:  1px solid #999;
+  font-size: 15px;
+  font-weight: bold;
+  color: black;
+}
+.contentBox {
+  display: flex;
+  align-content: center;
+  font-size: 15px;
+  width: 250px;
+  color: #333;
+}
+.column {
+  flex-direction: column;
+}
+.bold {
+  font-weight: bold;
+}
+.boldLink {
+  font-weight: bold;
+  text-decoration: none;
+}
+.hl {
+  display: block;
+  border-bottom: 1px solid #999;
+  height: 2px;
+  width: 250px;
+  margin-left: 50px;
+}
+.priceIcon {
+  display: flex;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: bold;
+}
+.priceIconRed {
+  color: red;
+}
+.priceIconGray {
+  color: gray;
+}

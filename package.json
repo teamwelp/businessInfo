@@ -19,6 +19,8 @@
     "css-loader": "^0.28.10",
     "feather-icons": "^4.6.0",
     "npm": "^5.7.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "react-hot-loader": "^4.0.0",
     "react-icons": "^2.2.7",
     "style-loader": "^0.20.2",
@@ -46,8 +48,6 @@
     "lorem-ipsum": "^1.0.4",
     "mongoose": "^5.0.7",
     "puppeteer": "^1.1.1",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
     "react-test-renderer": "^16.2.0",
     "regenerator-runtime": "^0.11.1",
     "webpack-cli": "^2.0.9"
