@@ -1,5 +1,5 @@
 const express = require('express');
-const dbInsert = require('../database/db-insert');
+const dbFind = require('../database/db-find');
 
 const app = express();
 
@@ -11,7 +11,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/id/:bizId', (req, res) => {
-  dbInsert(req.params.bizId)
+  dbFind(req.params.bizId)
     .then((data) => {
       res.status(200).send(JSON.stringify(data));
     })
