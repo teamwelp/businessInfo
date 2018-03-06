@@ -1,0 +1,15 @@
+.sidehours {
+  display: flex;
+  flex-direction:  column;
+  justify-content: center;
+  align-content: center;
+  padding-left: 30px;
+  border-left: 1px solid gray;
+}
+.hoursHeader {
+  font-size: 18px;
+  color: red;
+  font-weight: bold;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
