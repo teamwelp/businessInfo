@@ -16,6 +16,7 @@ describe('Sidebar Hours Widget', () => {
 });
 
 describe('Day Hours Component - row of Sidebar Hours', () => {
+  Date.now = jest.fn(() => new Date('June 4, 2018 11:00:00').valueOf());
   const mondayHours = shallow(<DayHours day={starterData.hours.Mon} />);
   test('renders day for Monday', () => {
     expect(mondayHours.find('.day').text()).toBe('Mon');
