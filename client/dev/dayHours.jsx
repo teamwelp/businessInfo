@@ -7,9 +7,20 @@ export default (props) => {
     if (props.day === undefined) return 'Closed';
     return getTodaysHoursContent(props.day);
   };
-  const hours = getHours(props);
+  const hours = getHours();
   const getIsOpen = () => {
-    if (isOpen(props.day)) return 'Open now';
+    const getIsOpenToday = () => {
+      let todayInteger = new Date(Date.now()).getDay();
+      if (todayInteger === 0) {
+        todayInteger = 6;
+      } else {
+        todayInteger -= 1;
+      }
+      const sortedDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+      if (todayInteger === sortedDays.indexOf(props.day.name)) return true;
+      return false;
+    };
+    if (isOpen(props.day) && getIsOpenToday()) return 'Open now';
     return '';
   };
   const openStatus = getIsOpen();

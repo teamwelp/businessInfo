@@ -10,7 +10,7 @@ export default (props) => {
     return props.data.hours[day];
   });
   const rows = sortedDayHours.map((day) => {
-    return <DayHours key={day.name} day={day} />;
+    return <DayHours key={day.name} day={day} sorteddays={sortedDays} />;
   });
   return (
     <div className={styles.sidehours}>

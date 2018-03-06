@@ -17,7 +17,7 @@ describe('Sidebar Hours Widget', () => {
 
 describe('Day Hours Component - row of Sidebar Hours', () => {
   Date.now = jest.fn(() => new Date('June 4, 2018 11:00:00').valueOf());
-  const mondayHours = shallow(<DayHours day={starterData.hours.Mon} />);
+  let mondayHours = shallow(<DayHours day={starterData.hours.Mon} />);
   test('renders day for Monday', () => {
     expect(mondayHours.find('.day').text()).toBe('Mon');
   });
@@ -26,5 +26,10 @@ describe('Day Hours Component - row of Sidebar Hours', () => {
   });
   test('renders if it is open for Monday', () => {
     expect(mondayHours.find('.isOpen').text()).toBe('Open now');
+  });
+  test('does not render "open now" if it is closed', () => {
+    Date.now = jest.fn(() => new Date('June 4, 2018 01:00:00').valueOf());
+    mondayHours = shallow(<DayHours day={starterData.hours.Mon} />);
+    expect(mondayHours.find('.isOpen').text()).toBe('');
   });
 });
