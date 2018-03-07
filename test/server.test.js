@@ -1,5 +1,5 @@
 const puppeteer = require('puppeteer');
-const dbFind = require('../database/db-find');
+const {open, find, close} = require('../database/db-find');
 
 describe('test end-to-end server', async () => {
   const browser = await puppeteer.launch({
@@ -22,9 +22,11 @@ describe('test end-to-end server', async () => {
 
 describe('test database retrieve', () => {
   test('test db find', async () => {
-    await dbFind(300)
+    open();
+    await find(300)
       .then((data) => {
         expect(data[0].id).toBe(300);
       });
+    close();
   });
 });
