@@ -1,10 +1,10 @@
-import starterData from './starterdata';
-import Header from '../client/dev/header';
 import React from 'react';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import puppeteer from 'puppeteer';
 import renderer from 'react-test-renderer';
+import starterData from './starterdata';
+import Header from '../client/dev/header';
 
 const { shallow } = Enzyme;
 Enzyme.configure({ adapter: new Adapter() });
@@ -47,5 +47,5 @@ describe('Header Component End-to-End Test', () => {
     await page.waitForSelector('.header__name___uwB32');
     const html = await page.$eval('.header__name___uwB32', e => e.innerHTML);
     expect(html).toBe('Oleg\'s Burger Palace');
-  }, 10000);
+  }, 15000);
 });
