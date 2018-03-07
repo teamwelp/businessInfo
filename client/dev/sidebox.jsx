@@ -1,7 +1,7 @@
 import React from 'react';
 import FaClock from 'react-icons/lib/fa/clock-o';
 import MdMenu from 'react-icons/lib/md/local-restaurant';
-import { getTodaysHours, RenderHoursToday } from './sidebox-date-helpers.jsx';
+import { getTodaysHours, RenderHoursToday, isOpen } from './sidebox-date-helpers.jsx';
 import styles from './sidebox.css';
 
 const calcOpen = (props) => {
@@ -9,7 +9,7 @@ const calcOpen = (props) => {
   let openNowStyle = styles.openNow;
   let openNowContent = 'Open now';
   const todaysHours = getTodaysHours(props.data.hours);
-  if (!todaysHours) {
+  if (!todaysHours || !isOpen(todaysHours)) {
     clockIcon = styles.clockClosed;
     openNowStyle = styles.closedNow;
     openNowContent = 'Closed now';
