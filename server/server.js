@@ -3,12 +3,7 @@ const dbFind = require('../database/db-find');
 
 const app = express();
 
-app.use('/biz/:bizId', express.static( __dirname + '/../public'));
-app.use('/biz/:bizId', express.static( __dirname + '/../client/dist'));
-
-app.get('/', (req, res) => {
-  res.status(200).send();
-});
+app.use('/biz/:bizId', express.static(__dirname + '/../public'));
 
 app.get('/id/:bizId', (req, res) => {
   dbFind(req.params.bizId)
