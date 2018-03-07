@@ -26,8 +26,7 @@ const getTodaysHoursContent = (todaysHours) => {
 
 const RenderHoursToday = (props) => {
   if (props.todaysHours) {
-    const hoursTodayContent = getTodaysHoursContent(props.todaysHours);
-    return <span>Today <b>{hoursTodayContent}</b></span>;
+    return <span>Today <b>{getTodaysHoursContent(props.todaysHours)}</b></span>;
   }
   return <span><b>Closed today</b></span>;
 };

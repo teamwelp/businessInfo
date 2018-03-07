@@ -1,19 +1,27 @@
 import React from 'react';
 import FaClock from 'react-icons/lib/fa/clock-o';
 import MdMenu from 'react-icons/lib/md/local-restaurant';
-import { getTodaysHours, RenderHoursToday } from './sidebox-date-helpers.jsx';
+import { getTodaysHours, RenderHoursToday, isOpen } from './sidebox-date-helpers.jsx';
 import styles from './sidebox.css';
 
-export default (props) => {
+const calcOpen = (props) => {
   let clockIcon = styles.clockOpen;
   let openNowStyle = styles.openNow;
   let openNowContent = 'Open now';
   const todaysHours = getTodaysHours(props.data.hours);
-  if (!todaysHours) {
+  if (!todaysHours || !isOpen(todaysHours)) {
     clockIcon = styles.clockClosed;
     openNowStyle = styles.closedNow;
     openNowContent = 'Closed now';
   }
+  return {
+    clockIcon,
+    openNowStyle,
+    openNowContent,
+    todaysHours,
+  };
+};
+const calcPrice = (props) => {
   let priceIconRed = '';
   let priceIconGray = '';
   for (let i = 0; i < 4; i += 1) {
@@ -23,14 +31,26 @@ export default (props) => {
       priceIconGray = `${priceIconGray}$`;
     }
   }
-  let priceRange = `$${props.data.priceRangeLow}-${props.data.priceRangeLow + props.data.priceRangeRange}`;
+  const priceRange = `$${props.data.priceRangeLow}-${props.data.priceRangeLow + props.data.priceRangeRange}`;
+  return {
+    priceIconRed,
+    priceIconGray,
+    priceRange,
+  };
+};
+
+export default (props) => {
   return (
     <div className={styles.sidebox}>
       <div className={styles.categoryBox}>
-        <FaClock className={`${styles.icon} ${clockIcon}`} />
+        <FaClock className={`${styles.icon} ${calcOpen(props).clockIcon}`} />
         <div className={`${styles.contentBox} ${styles.column}`}>
-          <span className={styles.hoursToday}><RenderHoursToday todaysHours={todaysHours} /></span>
-          <span className={openNowStyle}><b>{openNowContent}</b></span>
+          <span className={styles.hoursToday}>
+            <RenderHoursToday todaysHours={calcOpen(props).todaysHours} />
+          </span>
+          <span className={calcOpen(props).openNowStyle}>
+            <b>{calcOpen(props).openNowContent}</b>
+          </span>
         </div>
       </div>
       <span className={styles.hl} />
@@ -44,11 +64,11 @@ export default (props) => {
       <div className={styles.categoryBox}>
         <div className={styles.icon}>
           <div className={styles.priceIcon}>
-            <div className={styles.priceIconRed}>{priceIconRed}</div>
-            <div className={styles.priceIconGray}>{priceIconGray}</div>
+            <div className={styles.priceIconRed}>{calcPrice(props).priceIconRed}</div>
+            <div className={styles.priceIconGray}>{calcPrice(props).priceIconGray}</div>
           </div>
         </div>
-        <span className={styles.contentBox}>Price Range&nbsp;&nbsp;<b>{priceRange}</b></span>
+        <span className={styles.contentBox}>Price Range&nbsp;&nbsp;<b>{calcPrice(props).priceRange}</b></span>
       </div>
       <span className={styles.hl} />
       <div className={styles.categoryBox}>

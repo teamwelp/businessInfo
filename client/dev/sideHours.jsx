@@ -2,21 +2,25 @@ import React from 'react';
 import DayHours from './dayHours';
 import styles from './sideHours.css';
 
+const calcDays = (props) => {
+  const sortedDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+  const newProps = Object.assign({}, props);
+  return sortedDays.map((day) => {
+    newProps.data.hours[day].name = day;
+    return newProps.data.hours[day];
+  });
+};
+
+const mapDayHours = (days) => {
+  return days.map(day => <DayHours key={day.name} day={day} />);
+};
 
 export default (props) => {
-  const sortedDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-  const sortedDayHours = sortedDays.map((day) => {
-    props.data.hours[day].name = day;
-    return props.data.hours[day];
-  });
-  const rows = sortedDayHours.map((day) => {
-    return <DayHours key={day.name} day={day} sorteddays={sortedDays} />;
-  });
   return (
     <div className={styles.sidehours}>
       <div className={styles.hoursHeader}>Hours</div>
       <div className={styles.hoursTable}>
-        {rows}
+        {mapDayHours(calcDays(props))}
       </div>
     </div>
   );

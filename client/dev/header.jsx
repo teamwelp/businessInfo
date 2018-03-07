@@ -7,7 +7,7 @@ import FaCellPhone from 'react-icons/lib/fa/mobile';
 import React from 'react';
 import styles from './header.css';
 
-export default function (props) {
+const calcClaimed = (props) => {
   let claimedContent = 'Unclaimed';
   let claimIcon = <FaQuestion />;
   let claimStyle = styles.unclaimed;
@@ -16,20 +16,31 @@ export default function (props) {
     claimIcon = <FaCheck />;
     claimStyle = styles.claimed;
   }
+  return {
+    claimedContent,
+    claimIcon,
+    claimStyle,
+  };
+};
+const calcPrice = (props) => {
   let priceScale = '';
   for (let i = 0; i < props.data.priceRangeScale; i += 1) {
     priceScale = priceScale.concat('$');
   }
+  return priceScale;
+};
+
+export default function (props) {
   return (
     <div>
       <div className={styles.header}>
         <div className={styles.name}>{props.data.name}</div>
         <div className={styles.claimdiv}>
-          <div className={styles.claimicon}>{claimIcon}</div>
-          <div className={claimStyle}>{claimedContent}</div>
+          <div className={styles.claimicon}>{calcClaimed(props).claimIcon}</div>
+          <div className={calcClaimed(props).claimStyle}>{calcClaimed(props).claimedContent}</div>
         </div>
         <div className={styles.bottomHeader}>
-          {priceScale}
+          {calcPrice(props)}
           <div className={styles.bullet}>&bull;</div>
           <div className={styles.metatags}>{props.data.metatags.join(', ')}</div>
         </div>
