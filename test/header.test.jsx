@@ -56,7 +56,7 @@ describe('Header Component End-to-End Test', () => {
       headless: true,
     });
     const page = await browser.newPage();
-    await page.goto('http://127.0.0.1:3000/biz/200/');
+    await page.goto('http://127.0.0.1:9001/biz/200/');
     await page.waitForSelector('.header__name___uwB32');
     const html = await page.$eval('.header__name___uwB32', e => e.innerHTML);
     expect(html).toBe('Oleg\'s Burger Palace');

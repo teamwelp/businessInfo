@@ -18,7 +18,7 @@ export default class App extends React.Component {
   componentWillMount() {
     let url = document.location.href.split('/');
     url = url[url.length - 2];
-    axios.get(`http://127.0.0.1:3000/id/${url}/`)
+    axios.get(`http://127.0.0.1:9001/id/${url}/`)
       .then((response) => {
         this.setState({ data: response.data[0] });
       })
@@ -39,4 +39,4 @@ export default class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('businessInfo'));
