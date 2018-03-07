@@ -38,12 +38,12 @@ describe('Header Component Snapshot Test', () => {
 })
 
 describe('Header Component End-to-End Test', () => {
-  test('rendering default page from server', async () => {
+  test('rendering from server', async () => {
     const browser = await puppeteer.launch({
       headless: true,
     });
     const page = await browser.newPage();
-    await page.goto('http://127.0.0.1:3000/');
+    await page.goto('http://127.0.0.1:3000/biz/200/');
     await page.waitForSelector('.header__name___uwB32');
     const html = await page.$eval('.header__name___uwB32', e => e.innerHTML);
     expect(html).toBe('Oleg\'s Burger Palace');
