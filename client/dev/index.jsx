@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
 import styles from './index.css';
 import Header from './header';
 import Sidebox from './sidebox';
@@ -11,9 +12,19 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: 200,
       data: starterData,
     };
+  }
+  componentWillMount() {
+    let url = document.location.href.split('/');
+    url = url[url.length - 2];
+    axios.get(`http://127.0.0.1:3000/id/${url}`)
+      .then((response) => {
+        this.setState({ data: response.data[0] });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
   render() {
     return (
