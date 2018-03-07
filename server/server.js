@@ -1,13 +1,15 @@
 const express = require('express');
-const dbFind = require('../database/db-find');
+const {open, find, close} = require('../database/db-find');
 
 const app = express();
 
 app.use('/biz/:bizId', express.static(__dirname + '/../public'));
 
 app.get('/id/:bizId', (req, res) => {
-  dbFind(req.params.bizId)
+  open();
+  find(req.params.bizId)
     .then((data) => {
+      close();
       res.status(200).send(JSON.stringify(data));
     })
     .catch((error) => {
