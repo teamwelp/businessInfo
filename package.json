@@ -13,7 +13,7 @@
     "seed": "node ./database/seed-database.js",
     "webpack": "webpack -w -d",
     "server": "nodemon ./server/server.js --ignore node_modules/",
-    "start": node ./server/server.js
+    "start": "node ./server/server.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
