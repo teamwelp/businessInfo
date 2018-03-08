@@ -20,7 +20,7 @@ jobs:
       - checkout
       - run: npm install
       - run: npm run seed
-      - run: npm run server
+      - run: npm start
       - run: npm test
 
 
