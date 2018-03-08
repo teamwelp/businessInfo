@@ -1,8 +1,10 @@
 const express = require('express');
-const {open, find, close} = require('../database/db-find');
+const cors = require('cors');
+const { open, find, close } = require('../database/db-find');
 
 const app = express();
 
+app.use(cors());
 app.use('/biz/:bizId', express.static(__dirname + '/../public'));
 
 app.get('/id/:bizId', (req, res) => {
@@ -17,4 +19,4 @@ app.get('/id/:bizId', (req, res) => {
     });
 });
 
-app.listen(9001, () => console.log('listening on port 9001') );
+app.listen(9001, () => console.log('listening on port 9001'));
