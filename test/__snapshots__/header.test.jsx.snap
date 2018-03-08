@@ -9,10 +9,7 @@ exports[`Header Component Snapshot Test renders correctly 1`] = `
       className="name"
     >
       Oleg's Burger Palace
-    </div>
-    <div
-      className="claimdiv"
-    >
+       
       <div
         className="claimicon"
       >

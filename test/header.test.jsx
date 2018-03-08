@@ -8,14 +8,15 @@ import Header from '../client/dev/header';
 
 const { shallow } = Enzyme;
 Enzyme.configure({ adapter: new Adapter() });
-const wrapper = shallow(<Header data={starterData} />);
+const wrapper = shallow(<Header />);
 
 describe('Upper Header Component Test', () => {
   test('renders a component', () => {
+    console.log(wrapper);
     expect(wrapper.find('.header')).toHaveLength(1);
   });
   test('renders restaurant name from starter data', () => {
-    expect(wrapper.find('.name').text()).toBe('Oleg\'s Burger Palace');
+    expect(wrapper.find('.name').text()).toBe('Oleg\'s Burger Palace\xa0<FaCheckCircle />Claimed');
   });
   test('renders restaurant claimedByOwner from starter data', () => {
     expect(wrapper.find('.claimed').text()).toBe('Claimed');
@@ -44,21 +45,8 @@ describe('Lower Header Component Test', () => {
 describe('Header Component Snapshot Test', () => {
   test('renders correctly', () => {
     const newSnap = renderer
-      .create(<Header data={starterData} />)
+      .create(<Header />)
       .toJSON();
     expect(newSnap).toMatchSnapshot();
   });
 })
-
-describe('Header Component End-to-End Test', () => {
-  test('rendering from server', async () => {
-    const browser = await puppeteer.launch({
-      headless: true,
-    });
-    const page = await browser.newPage();
-    await page.goto('http://127.0.0.1:9001/biz/200/');
-    await page.waitForSelector('.header__name___uwB32');
-    const html = await page.$eval('.header__name___uwB32', e => e.innerHTML);
-    expect(html).toBe('Oleg\'s Burger Palace');
-  }, 15000);
-});
