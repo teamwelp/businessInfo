@@ -5,7 +5,7 @@ const buildDir = path.resolve(__dirname, './public');
 const appDir = path.resolve(__dirname, './client/dev');
 
 const config = {
-  entry: `${appDir}\\index.jsx`,
+  entry: [`${appDir}\\index.jsx`, `${appDir}\\header.jsx`],
   output: {
     path: buildDir,
     filename: 'bundle.js',

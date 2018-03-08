@@ -37,6 +37,7 @@ const calcPrice = (props) => {
 export default class Header extends React.Component {
   constructor(props) {
     super(props);
+    console.log('constructed');
     this.state = {
       data: starterData,
     }
@@ -56,36 +57,37 @@ export default class Header extends React.Component {
     return (
       <div>
         <div className={styles.header}>
-          <div className={styles.name}>{props.data.name}</div>
-          <div className={styles.claimdiv}>
-            <div className={styles.claimicon}>{calcClaimed(props).claimIcon}</div>
-            <div className={calcClaimed(props).claimStyle}>{calcClaimed(props).claimedContent}</div>
+          <div className={styles.name}>
+            {this.state.data.name}
+            &nbsp;
+            <div className={styles.claimicon}>{calcClaimed(this.state).claimIcon}</div>
+            <div className={calcClaimed(this.state).claimStyle}>{calcClaimed(this.state).claimedContent}</div>
           </div>
           <div className={styles.bottomHeader}>
-            {calcPrice(props)}
+            {calcPrice(this.state)}
             <div className={styles.bullet}>&bull;</div>
-            <div className={styles.metatags}>{props.data.metatags.join(', ')}</div>
+            <div className={styles.metatags}>{this.state.data.metatags.join(', ')}</div>
           </div>
         </div>
         <div className={styles.contact}>
           <div className={styles.address}>
             <div className={styles.grayicon}><FaLocation /></div>
             <div className={styles.addressPhone}>
-              {props.data.addressNumber} {props.data.addressStreet} 
+              {this.state.data.addressNumber} {this.state.data.addressStreet} 
               <br />
-              {props.data.addressCity}, {props.data.addressState} {props.data.addressZip}
+              {this.state.data.addressCity}, {this.state.data.addressState} {this.state.data.addressZip}
             </div>
           </div>
           <div>
             <div className={styles.grayicon}><FaPhone /></div>
             <div className={styles.addressPhone}>
-              ({props.data.phoneAreaCode}) {props.data.phoneOfficeCode}-{props.data.phoneLineCode}
+              ({this.state.data.phoneAreaCode}) {this.state.data.phoneOfficeCode}-{this.state.data.phoneLineCode}
             </div>
           </div>
           <div>
             <div className={styles.grayicon}><FaLink /></div>
-            <a className={styles.contactLink} href={props.data.businessLink}>
-              {props.data.businessLink}
+            <a className={styles.contactLink} href={this.state.data.businessLink}>
+              {this.state.data.businessLink}
             </a>
           </div>
           <div>

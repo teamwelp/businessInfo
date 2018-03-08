@@ -2,42 +2,42 @@
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: #333;
   background-color: #f5f5f5;
-  width: 520px;
-  height: 80px;
-  margin-left: 150px;
+  width: 300px;
+  height: 100px;
 }
 .name {
-  float: left;
   margin: 10px 10px 0px 10px;
   font-size: 30px;
   font-weight: bold;
 }
 .claimdiv {
-  float: left;
   margin: 24px 0px 0px 0px;
   font-size: 15px;
 }
 .claimicon {
-  float: left;
+  display: inline;
+  font-size: 15px;
   position: relative;
   bottom: 3px;
   color: #0073bb;
   margin-right: 5px;
 }
 .unclaimed {
-  float: left;
+  display: inline;
+  font-size: 15px;
   color: #0073bb;
   text-decoration: none;
 }
 .claimed {
-  float: left;
+  display: inline;
+  font-size: 15px;
   color: #333;
 }
 .bottomHeader {
-  float: left;
+  background-color: #f5f5f5;
   margin: 10px;
   font-size: 15px;
-  width: 400px;
+  width: 280px;
 }
 .bullet {
   display: inline;
@@ -50,8 +50,7 @@
   font-weight: bold;
 }
 .contact {
-  margin-left: 150px;
-  width: 300px;
+  width: 290px;
   border: 1px solid #999;
   background-color: #ffffe6;
   padding: 4px;
