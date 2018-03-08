@@ -20,6 +20,7 @@ jobs:
       - checkout
       - run: npm install
       - run: npm run seed
+      - run: docker run --expose 127.0.0.1:8000:8000
       - run: 
           command: npm start
           background: true
