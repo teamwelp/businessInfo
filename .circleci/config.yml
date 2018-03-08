@@ -20,7 +20,17 @@ jobs:
       - checkout
       - run: npm install
       - run: npm run seed
-      - run: npm start
+      - run: 
+        command: npm start
+        background: true
+      - run:
+        name: install dockerize
+        command: wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+        environment:
+          DOCKERIZE_VERSION: v0.3.0
+      - run:
+        name: wait for server
+        command: dockerize -wait http://127.0.0.1:9001 -timeout 1m
       - run: npm test
 
 
