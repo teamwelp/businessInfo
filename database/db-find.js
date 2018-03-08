@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+
 mongoose.Promise = global.Promise;
 const { Business } = require('./db-helpers');
 
@@ -12,4 +13,4 @@ module.exports.find = (bizId) => {
 
 module.exports.close = () => {
   mongoose.disconnect();
-}
+};

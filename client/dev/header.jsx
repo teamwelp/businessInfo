@@ -5,8 +5,7 @@ import FaLink from 'react-icons/lib/fa/external-link';
 import FaPhone from 'react-icons/lib/fa/phone';
 import FaCellPhone from 'react-icons/lib/fa/mobile';
 import React from 'react';
-import ReactDOM from 'react-dom';
-import axios from 'axios';
+import dbGet from './dbGet';
 import styles from './header.css';
 
 const starterData = { '_id': '5a95c36256028a0cd03c9307', 'carParking': ['Parking Lot', 'Garage, Validated'], 'metatags': ['Soul Food', 'Bars', 'Dinner', 'Brunch'], 'acceptsCreditCards': false, 'bikeParking': true, 'byApptOnly': true, 'claimedByOwner': true, 'goodForKids': true, 'isYelpAdvertiser': true, 'id': 200, 'phoneAreaCode': 415, 'addressNumber': 301, 'healthInspection': 88, 'phoneLineCode': 7940, 'phoneOfficeCode': 421, 'priceRangeLow': 29, 'priceRangeRange': 9, 'priceRangeScale': 1, 'hours': { 'Mon': { 'open': 9, 'close': 18, '_id': '5a95c36256028a0cd03c92ff' }, 'Tue': { 'open': 9, 'close': 18, '_id': '5a95c36256028a0cd03c9300' }, 'Wed': { 'open': 9, 'close': 18, '_id': '5a95c36256028a0cd03c9301' }, 'Thu': { 'open': 9, 'close': 18, '_id': '5a95c36256028a0cd03c9302' }, 'Fri': { 'open': 9, 'close': 18, '_id': '5a95c36256028a0cd03c9303' }, 'Sat': { 'open': 10, 'close': 21, '_id': '5a95c36256028a0cd03c9304' }, 'Sun': { 'open': 10, 'close': 21, '_id': '5a95c36256028a0cd03c9305' }, '_id': '5a95c36256028a0cd03c9306' }, 'businessLink': 'http://olegsburgerpalace.com', 'addressCity': 'San Francisco', 'addressState': 'CA', 'addressStreet': 'Mission Street', 'addressZip': '94103', 'longDescription': 'Nostrud do et commodo adipisicing sunt cupidatat voluptate duis proident est laborum. Culpa reprehenderit incididunt proident magna Lorem adipisicing deserunt quis sint eiusmod tempor esse. Culpa culpa amet exercitation proident velit in culpa eu commodo culpa. Aliquip cillum veniam consectetur laboris quis proident ullamco proident ullamco anim sint labore non elit. Minim sunt cupidatat tempor exercitation consectetur. Ipsum minim velit ex tempor enim elit ad. Duis dolore mollit commodo ea Lorem reprehenderit sint ex eu cillum. Enim voluptate dolore in esse occaecat pariatur anim reprehenderit commodo est pariatur dolor pariatur aliquip. Nulla et amet sunt ex consequat exercitation eiusmod amet non. Quis Lorem non anim deserunt.', 'name': 'Oleg\'s Burger Palace', '__v': 0 };
@@ -40,18 +39,11 @@ export default class Header extends React.Component {
     console.log('constructed');
     this.state = {
       data: starterData,
-    }
+    };
   }
   componentWillMount() {
-    let url = document.location.href.split('/');
-    url = url[url.length - 2];
-    axios.get(`http://127.0.0.1:9001/id/${url}/`)
-      .then((response) => {
-        this.setState({ data: response.data[0] });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    const dbGetThis = dbGet.bind(this);
+    dbGetThis();
   }
   render() {
     return (
@@ -61,7 +53,9 @@ export default class Header extends React.Component {
             {this.state.data.name}
             &nbsp;
             <div className={styles.claimicon}>{calcClaimed(this.state).claimIcon}</div>
-            <div className={calcClaimed(this.state).claimStyle}>{calcClaimed(this.state).claimedContent}</div>
+            <div className={calcClaimed(this.state).claimStyle}>
+              {calcClaimed(this.state).claimedContent}
+            </div>
           </div>
           <div className={styles.bottomHeader}>
             {calcPrice(this.state)}
@@ -75,13 +69,15 @@ export default class Header extends React.Component {
             <div className={styles.addressPhone}>
               {this.state.data.addressNumber} {this.state.data.addressStreet} 
               <br />
-              {this.state.data.addressCity}, {this.state.data.addressState} {this.state.data.addressZip}
+              {this.state.data.addressCity}
+              , {this.state.data.addressState} {this.state.data.addressZip}
             </div>
           </div>
           <div>
             <div className={styles.grayicon}><FaPhone /></div>
             <div className={styles.addressPhone}>
-              ({this.state.data.phoneAreaCode}) {this.state.data.phoneOfficeCode}-{this.state.data.phoneLineCode}
+              ({this.state.data.phoneAreaCode}) {this.state.data.phoneOfficeCode}
+              -{this.state.data.phoneLineCode}
             </div>
           </div>
           <div>
@@ -92,7 +88,7 @@ export default class Header extends React.Component {
           </div>
           <div>
             <div className={styles.grayicon}><FaCellPhone /></div>
-            <a className={styles.contactLink} href="#">Send to your Phone</a>
+            <a className={styles.contactLink} href="http://www.google.com/">Send to your Phone</a>
           </div>
           <div className={styles.clearBoth} />
         </div>

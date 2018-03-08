@@ -3,7 +3,7 @@
   color: #333;
   background-color: #f5f5f5;
   width: 300px;
-  height: 100px;
+  height: auto;
 }
 .name {
   margin: 10px 10px 0px 10px;
@@ -35,7 +35,8 @@
 }
 .bottomHeader {
   background-color: #f5f5f5;
-  margin: 10px;
+  margin: 10px 10px 0 10px;
+  padding-bottom: 5px;
   font-size: 15px;
   width: 280px;
 }

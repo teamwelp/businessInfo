@@ -190,7 +190,7 @@ exports[`Header Component Snapshot Test renders correctly 1`] = `
       </div>
       <a
         className="contactLink"
-        href="#"
+        href="http://www.google.com/"
       >
         Send to your Phone
       </a>
