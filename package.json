@@ -70,7 +70,8 @@
       "\\.(css|less)$": "identity-obj-proxy"
     },
     "testPathIgnorePatterns": [
-      "/node_modules/"
+      "/node_modules/",
+      "/test/server.test.js"
     ]
   },
   "eslintConfig": {
