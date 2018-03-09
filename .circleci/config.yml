@@ -23,6 +23,6 @@ jobs:
           command: npm start
           background: true
       - run: npm run seed
-      - run: npm testci
+      - run: npm test
 
 

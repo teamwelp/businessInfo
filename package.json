@@ -8,8 +8,8 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "test": "jest --watch",
-    "testci": "jest",
+    "test": "jest",
+    "testwatch": "jest --watch",
     "coverage": "jest --coverage",
     "seed": "node ./database/seed-database.js",
     "webpack": "webpack -w -d",
