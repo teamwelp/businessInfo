@@ -9,12 +9,12 @@ describe('Google', () => {
       headless: true,
     });
     page = await browser.newPage(); 
-    await page.goto('https://google.com');
+    await page.goto('http://127.0.0.1:9001/biz/200');
   }, 15000);
   afterAll(() => {
     browser.close();
   });
-  it('should display "google" text on page', async () => {
-    await expect(page).toMatch('google');
+  it('should display "Phone" text on page', async () => {
+    await expect(page).toMatch('Phone');
   }, 15000);
 });
