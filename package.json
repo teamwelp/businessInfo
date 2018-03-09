@@ -9,6 +9,7 @@
   },
   "scripts": {
     "test": "jest --watch",
+    "testci": "jest",
     "coverage": "jest --coverage",
     "seed": "node ./database/seed-database.js",
     "webpack": "webpack -w -d",
