@@ -33,10 +33,3 @@ jobs:
           background: true
       - run: npm run seed
       - run: npm test
-
-
-
-
-      
-
-      - run: yarn install
