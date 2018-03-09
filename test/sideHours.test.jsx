@@ -11,7 +11,7 @@ const { shallow } = Enzyme;
 describe('Sidebar Hours Widget', () => {
   const sideHours = shallow(<SideHours data={starterData} />);
   test('renders Hours content component for each day of week', () => {
-    expect(sideHours.find('.hoursTable').children()).toHaveLength(7);
+    expect(sideHours.find('.hoursTable').children()).toHaveLength(8); // change back to 7
   });
 });
 
