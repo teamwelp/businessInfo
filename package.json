@@ -68,7 +68,11 @@
     "moduleNameMapper": {
       "\\.(svg)$": "<rootDir>/__mocks__/fileMock.js",
       "\\.(css|less)$": "identity-obj-proxy"
-    }
+    },
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/test/server.test.js"
+    ]
   },
   "eslintConfig": {
     "globals": {
