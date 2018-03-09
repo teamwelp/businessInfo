@@ -20,5 +20,3 @@ app.get('/id/:bizId', (req, res) => {
 });
 
 app.listen(9001, () => console.log('listening on port 9001'));
-
-// testing inconsequential change for caching

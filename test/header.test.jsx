@@ -6,13 +6,14 @@ import renderer from 'react-test-renderer';
 import starterData from './starterdata';
 import Header from '../client/dev/header';
 
+jest.mock('../client/dev/dbGet');
+
 const { shallow } = Enzyme;
 Enzyme.configure({ adapter: new Adapter() });
 const wrapper = shallow(<Header />);
 
 describe('Upper Header Component Test', () => {
   test('renders a component', () => {
-    console.log(wrapper);
     expect(wrapper.find('.header')).toHaveLength(1);
   });
   test('renders restaurant name from starter data', () => {

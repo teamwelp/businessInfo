@@ -48,6 +48,7 @@
     "express": "^4.16.2",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^22.4.2",
+    "jest-puppeteer-preset": "^2.0.1",
     "lodash": "^4.17.5",
     "lorem-ipsum": "^1.0.4",
     "mongoose": "^5.0.7",
@@ -68,7 +69,8 @@
     "moduleNameMapper": {
       "\\.(svg)$": "<rootDir>/__mocks__/fileMock.js",
       "\\.(css|less)$": "identity-obj-proxy"
-    }
+    },
+    "preset": "jest-puppeteer-preset"
   },
   "eslintConfig": {
     "globals": {

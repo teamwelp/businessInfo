@@ -36,7 +36,6 @@ const calcPrice = (props) => {
 export default class Header extends React.Component {
   constructor(props) {
     super(props);
-    console.log('constructed');
     this.state = {
       data: starterData,
     };
